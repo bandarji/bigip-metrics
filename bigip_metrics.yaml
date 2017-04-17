@@ -1,0 +1,17 @@
+---
+username: ADC_USER
+password: ADC_PASS
+clusters:
+  area51:
+    addr_list: [10.22.245.8, 10.22.245.9]
+  dugway:
+    addr_list: [10.22.245.16, 10.22.245.17]
+  hanger18:
+    addr_list: [10.22.245.24, 10.22.245.25]
+  kapustinyar:
+    addr_list: [10.22.245.32]
+  tonopah:
+    addr_list: [10.22.245.40, 10.22.245.41]
+  woomera:
+    addr_list: [10.22.245.48, 10.22.245.49]
+...
