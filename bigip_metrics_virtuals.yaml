@@ -4,6 +4,11 @@ password: ADC_PASS
 clusters:
   area51:
     addr_list: [10.22.245.8, 10.22.245.9]
+    vs_list:
+      - vip.homey.8000
+      - vip.homey.8443
+      - vip.kxta.80
+      - vip.yuccamountain.80
   dugway:
     addr_list: [10.22.245.16, 10.22.245.17]
   hanger18:
@@ -14,4 +19,8 @@ clusters:
     addr_list: [10.22.245.40, 10.22.245.41]
   woomera:
     addr_list: [10.22.245.48, 10.22.245.49]
+    vs_list:
+      - bluesteel_80
+      - ikara_443
+      - malkara_80
 ...
