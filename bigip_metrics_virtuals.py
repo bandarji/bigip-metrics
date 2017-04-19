@@ -37,6 +37,9 @@ class BigIPMetrics(object):
             self.error_exit('failed to determine active load balancer')
         self.vs = {}
         self.now_in_seconds = epoch_seconds()
+        self.vs_list = (self.yaml_dict.get('clusters', {}).
+                        get(self.target_cluster, {}).
+                        get('vs_list', None))
 
     def active_bigip(self):
         if type(self.cluster_addr_list) is list:
@@ -60,16 +63,20 @@ class BigIPMetrics(object):
         for vs_name in self.vs.keys():
             vs = self.vs.get(vs_name, {})
             for k, v in vs.items():
-                print('"lb.vs.{}.{}" {} {} {} lb="{}"'.\
-                        format(
-                            vs_name,
-                            k.replace('.', '_'),
-                            v,
-                            self.now_in_seconds,
-                            self.hostname,
-                            self.target_cluster
-                        )
+                dump_msg = '"lb.vs.{}.{}" {} {} {} lb="{}"'.\
+                    format(
+                        vs_name,
+                        k.replace('.', '_'),
+                        v,
+                        self.now_in_seconds,
+                        self.hostname,
+                        self.target_cluster
                     )
+                if self.vs_list:
+                    if k in self.vs_list:
+                        print(dump_msg)
+                else:
+                    print(dump_msg)
 
     def error_exit(self, msg):
         raise SystemExit(msg)
