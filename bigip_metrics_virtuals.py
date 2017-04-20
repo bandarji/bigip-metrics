@@ -73,7 +73,7 @@ class BigIPMetrics(object):
                         self.target_cluster
                     )
                 if self.vs_list:
-                    if k in self.vs_list:
+                    if vs_name in self.vs_list:
                         print(dump_msg)
                 else:
                     print(dump_msg)
