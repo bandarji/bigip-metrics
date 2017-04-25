@@ -62,14 +62,13 @@ class BigIPMetrics(object):
         # "lb.vs.vs_name" 123 addr lb="sj_int"
         for vs_name in self.vs.keys():
             vs = self.vs.get(vs_name, {})
-            for k, v in vs.items():
-                dump_msg = '"lb.vs.{}.{}" {} {} {} lb="{}"'.\
+            for metric_key, metric_value in vs.items():
+                dump_msg = 'lb.vs.{} {} {} vs="{}" slb="{}"'.\
                     format(
-                        vs_name,
-                        k.replace('.', '_'),
-                        v,
+                        metric_key.replace('.', '_'),
                         self.now_in_seconds,
-                        self.hostname,
+                        metric_value,
+                        vs_name,
                         self.target_cluster
                     )
                 if self.vs_list:
